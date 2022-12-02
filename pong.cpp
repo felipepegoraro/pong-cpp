@@ -7,36 +7,30 @@
 #define HEIGHT 400
 #define   NAME "Pong"
 
-using namespace std;
-
 int main(void)
 {
 	InitWindow(WIDTH, HEIGHT, NAME);
 	SetWindowState(FLAG_VSYNC_HINT);
 
-	const int rHeight = 100;
 
-	/* bullet *bullet = new ::bullet; */
-	Bullet bullet;
-	bullet.bulletInicialization(&bullet);
+	Bullet bullet(300, 300);
+	Player leftPlayer(1, 250);
+	Player rightPlayer(2, 250);
 
 	while (!WindowShouldClose())
 	{
-
-		bullet.bulletChangeSpeed(&bullet, 300, 300);
-
+		bullet.bulletChangeSpeed(&bullet);
 		BeginDrawing();
+
 			ClearBackground(BLACK);
 			DrawFPS(15, 15);
-			DrawCircle(
-				bullet.position.x,
-				bullet.position.y,
-				bullet.radius,
-				WHITE
-			);
 
-			DrawRectangle(17, centerY()-rHeight/2, 10, rHeight, WHITE);
-			DrawRectangle(WIDTH-25, centerY()-rHeight/2, 10, rHeight, WHITE);
+			bullet.drawBullet();
+			leftPlayer.drawPlayer();
+			rightPlayer.drawPlayer();
+
+			leftPlayer.handlePlayerMovement();
+			rightPlayer.handlePlayerMovement();
 
 		EndDrawing();
 	}
