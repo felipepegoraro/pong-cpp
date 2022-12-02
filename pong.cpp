@@ -3,6 +3,11 @@
 #include "./src/utils.h"
 #include "./src/structures.h"
 
+/*
+ * Felipe Pegoraro, 1|2/12/2022
+ * Joguinho feito em C++
+*/ 
+
 int main(void)
 {
 	InitWindow(WIDTH, HEIGHT, NAME);
