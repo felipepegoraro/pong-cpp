@@ -8,3 +8,12 @@ cd pong-cpp/
 make
 ./pong
 ```
+
+### Controle:
+| tecla | comando |
+|-----|------------------------------------|
+| `r` | reinicia o jogo                    |
+| `w` | movimenta jogador 1 para cima      | 
+| `s` | movimenta jogador 1 para baixo     |
+|`up` | movimenta jogador 2 para cima      |
+|`down`| movimenta jogador 2 para baixo    |
