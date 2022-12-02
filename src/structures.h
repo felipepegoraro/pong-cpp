@@ -3,6 +3,11 @@
 #include "./utils.h"
 
 typedef struct {
+	int match[2];
+	const char *winner;
+} Score;
+
+typedef struct {
 	int x;
 	int y;
 } strSpeed;
@@ -26,8 +31,9 @@ class Bullet {
 			speed.y = speedY;
 		}
 
-		void bulletChangeSpeed(Bullet *bullet);
+		void bulletChangeSpeed(void);
 		void drawBullet(void);
+		void handleWinner(Score *, Bullet *);
 };
 
 class Player {
@@ -61,7 +67,8 @@ class Player {
 		void drawPlayer(void);
 		void handlePlayerMovement(void);
 		Rectangle getRectangleFromPlayer();
-		void hangleBulletColision(Bullet *bullet);
+		void handleBulletColision(Bullet *bullet);
+		void handleBorderCollision(void);
 };
 
 #endif // !STRUCTURES_H

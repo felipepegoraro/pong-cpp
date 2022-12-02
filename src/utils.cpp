@@ -1,4 +1,5 @@
 #include "./utils.h"
+/* #include "./structures.h" */
 
 double centerX(void)
 {

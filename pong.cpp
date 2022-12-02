@@ -3,27 +3,33 @@
 #include "./src/utils.h"
 #include "./src/structures.h"
 
-#define  WIDTH 600
-#define HEIGHT 400
-#define   NAME "Pong"
-
 int main(void)
 {
 	InitWindow(WIDTH, HEIGHT, NAME);
 	SetWindowState(FLAG_VSYNC_HINT);
 
-
+	Score score = { {0, 0}, nullptr };
 	Bullet bullet(300, 300);
-	Player leftPlayer(1, 250);
-	Player rightPlayer(2, 250);
+	Player leftPlayer(1, 500);
+	Player rightPlayer(2, 500);
 
 	while (!WindowShouldClose())
 	{
-		bullet.bulletChangeSpeed(&bullet);
+		bullet.bulletChangeSpeed();
+
+		if (IsKeyPressed(KEY_R)){
+			bullet = Bullet(300, 300);
+			leftPlayer = Player(1, 500);
+			rightPlayer = Player(2, 500);
+			score = { {0, 0}, nullptr };
+		}
+
 		BeginDrawing();
 
 			ClearBackground(BLACK);
 			DrawFPS(15, 15);
+			DrawText(TextFormat("%d x %d", score.match[0], score.match[1]), centerX()-40, 15, 18, WHITE);
+			DrawText(TextFormat("speed: %d", abs(bullet.speed.x)), WIDTH-110, 15, 18, WHITE);
 
 			bullet.drawBullet();
 			leftPlayer.drawPlayer();
@@ -32,8 +38,13 @@ int main(void)
 			leftPlayer.handlePlayerMovement();
 			rightPlayer.handlePlayerMovement();
 
-			leftPlayer.hangleBulletColision(&bullet);
-			rightPlayer.hangleBulletColision(&bullet);
+			leftPlayer.handleBulletColision(&bullet);
+			rightPlayer.handleBulletColision(&bullet);
+
+			bullet.handleWinner(&score, &bullet);
+
+			leftPlayer.handleBorderCollision();
+			rightPlayer.handleBorderCollision();
 
 		EndDrawing();
 	}
