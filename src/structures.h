@@ -45,7 +45,7 @@ class Player {
 			speed = playerSpeed;
 
 			switch (side){
-				case 1: //esquerda
+				case 1: // esquerda
 					position.x = 17;
 					position.y = centerY()-height/2;
 					break;
@@ -60,6 +60,8 @@ class Player {
 
 		void drawPlayer(void);
 		void handlePlayerMovement(void);
+		Rectangle getRectangleFromPlayer();
+		void hangleBulletColision(Bullet *bullet);
 };
 
 #endif // !STRUCTURES_H

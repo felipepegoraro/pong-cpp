@@ -32,6 +32,9 @@ int main(void)
 			leftPlayer.handlePlayerMovement();
 			rightPlayer.handlePlayerMovement();
 
+			leftPlayer.hangleBulletColision(&bullet);
+			rightPlayer.hangleBulletColision(&bullet);
+
 		EndDrawing();
 	}
 

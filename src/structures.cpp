@@ -46,18 +46,6 @@ void Bullet::drawBullet(void)
 	);
 }
 
-void Player::drawPlayer(void)
-{
-	DrawRectangle(
-		position.x,
-		position.y,
-		width,
-		height,
-		WHITE
-	);
-}
-
-
 void Player::handlePlayerMovement(void)
 {
 	int keys[2] = { KEY_UP, KEY_DOWN };
@@ -73,4 +61,34 @@ void Player::handlePlayerMovement(void)
 
 	if (IsKeyDown(keys[1]))
 		position.y += speed * GetFrameTime();
+}
+
+Rectangle Player::getRectangleFromPlayer()
+{
+	return Rectangle { 
+		(float) position.x - width/2,
+		(float) position.y - height/2,
+		(float) width,
+		(float) height 
+	};
+}
+
+void Player::drawPlayer(void)
+{
+	DrawRectangleRec(
+		getRectangleFromPlayer(),
+		WHITE
+	);
+}
+
+void Player::hangleBulletColision(Bullet *bullet)
+{
+	if (CheckCollisionCircleRec(
+			Vector2{ (float)bullet->position.x, (float)bullet->position.y },
+			bullet->radius,
+			getRectangleFromPlayer()
+		)
+	) {
+		bullet->speed.x *= -1;
+	}
 }
