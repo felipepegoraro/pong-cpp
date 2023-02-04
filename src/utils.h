@@ -7,6 +7,17 @@
 
 #include <raylib.h>
 
+struct Score {
+	int match[2];
+	const char *winner;
+};
+
+template <typename T>
+struct Point { 
+  T x;
+  T y; 
+};
+
 double centerX(void);
 double centerY(void);
 

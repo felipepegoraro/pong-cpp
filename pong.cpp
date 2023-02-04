@@ -1,10 +1,8 @@
-#include "./src/utils.h"
-#include "./src/structures.h"
-#include <iostream>
+#include "./src/game.h"
 
 /*
  * Felipe Pegoraro, 1|2/12/2022
- * Joguinho feito em C++
+ * joguinho feito em C++
 */ 
 
 int main(void)
